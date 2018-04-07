@@ -1,0 +1,80 @@
+pragma solidity ^0.4.18;
+
+import './ownership/Ownable.sol';
+import './AssembledCommonSale.sol';
+import './Token.sol';
+import './PreITO.sol';
+import './ITO.sol';
+
+contract Configurator is Ownable {
+
+  MintableToken public token;
+
+  PreITO public preITO;
+
+  ITO public ito;
+
+  function deploy() public onlyOwner {
+
+    token = new Token();
+
+    preITO = new PreITO();
+    ito = new ITO();
+
+    commonConfigure(preITO);
+    commonConfigure(ito);
+
+    preITO.setWallet(0xa86780383E35De330918D8e4195D671140A60A74);
+    preITO.setStart(1524441600);
+    preITO.addMilestone(9, 200);
+    preITO.addMilestone(10, 150);
+    preITO.addMilestone(10, 100);
+    preITO.setHardcap(6282000000000000000000);
+
+    token.setSaleAgent(preITO);
+
+    ito.setWallet(0x98882D176234AEb736bbBDB173a8D24794A3b085);
+    ito.setStart(1527206400);
+    ito.setPeriod(44);
+    ito.setFirstBonusPercent(50);
+    ito.setFirstBonusLimitPercent(200);
+    ito.setHardcap(37697000000000000000000);
+
+    ito.addWallet(0x98882D176234AEb736bbBDB173a8D24794A3b085, 150);
+    ito.addWallet(0xa86780383E35De330918D8e4195D671140A60A74, 50);
+    ito.addWallet(0x675eDE27cafc8Bd07bFCDa6fEF6ac25031c74766, 50);
+
+    preITO.setNextSaleAgent(ito);
+
+    address manager = 0x675eDE27cafc8Bd07bFCDa6fEF6ac25031c74766;
+
+    token.transferOwnership(manager);
+    preITO.transferOwnership(manager);
+    ito.transferOwnership(manager);
+  }
+
+  function commonConfigure(AssembledCommonSale sale) internal {
+    sale.setPercentRate(1000);
+    sale.setMinInvestedLimit(100000000000000000);
+    sale.setPrice(3184000000000000000000);
+    sale.addValueBonus(3000000000000000000, 10);
+    sale.addValueBonus(6000000000000000000, 15);
+    sale.addValueBonus(9000000000000000000, 20);
+    sale.addValueBonus(12000000000000000000, 25);
+    sale.addValueBonus(15000000000000000000, 30);
+    sale.addValueBonus(21000000000000000000, 40);
+    sale.addValueBonus(30000000000000000000, 50);
+    sale.addValueBonus(48000000000000000000, 60);
+    sale.addValueBonus(75000000000000000000, 70);
+    sale.addValueBonus(120000000000000000000, 80);
+    sale.addValueBonus(150000000000000000000, 90);
+    sale.addValueBonus(225000000000000000000, 100);
+    sale.addValueBonus(300000000000000000000, 110);
+    sale.addValueBonus(450000000000000000000, 120);
+    sale.addValueBonus(600000000000000000000, 130);
+    sale.addValueBonus(900000000000000000000, 150);
+    sale.setToken(token);
+  }
+
+}
+
