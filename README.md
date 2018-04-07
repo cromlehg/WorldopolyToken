@@ -49,7 +49,7 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 
 * _Team tokens percent_         : 15%
 * _Marketing tokens percent_    :  5%
-* _Reserved tokens percent_     : 10%
+* _Reserved tokens percent_     :  5%
 * _For sale tokens percent_     : 75%
 
 ## AirDrop feature
