@@ -14,9 +14,26 @@ contract MintableToken is AddressesFilterFeature, StandardToken {
 
   address public saleAgent;
 
-  modifier notLocked() {
-    require(msg.sender == owner || msg.sender == saleAgent || allowedAddresses[msg.sender] || mintingFinished);
+  mapping (address => uint) public initialBalances;
+
+  uint public vestingPercent;
+
+  uint public constant percentRate = 100;
+
+  modifier notLocked(address _from, uint _value) {
+    if(!(_from == owner || _from == saleAgent || allowedAddresses[_from])) {
+      require(mintingFinished);
+      if(vestingPercent < percentRate) {
+        uint minLockedBalance = initialBalances[_from].mul(vestingPercent).div(percentRate);
+        require(minLockedBalance >= balances[_from].sub(_value));
+      }
+    }
     _;
+  }
+
+  function setVestingPercent(uint newVestingPercent) public {
+    require(msg.sender == saleAgent || msg.sender == owner);
+    vestingPercent = newVestingPercent;
   }
 
   function setSaleAgent(address newSaleAgnet) public {
@@ -29,6 +46,9 @@ contract MintableToken is AddressesFilterFeature, StandardToken {
     
     totalSupply = totalSupply.add(_amount);
     balances[_to] = balances[_to].add(_amount);
+
+    initialBalances[_to] = balances[_to];
+
     Mint(_to, _amount);
     return true;
   }
@@ -44,11 +64,11 @@ contract MintableToken is AddressesFilterFeature, StandardToken {
     return true;
   }
 
-  function transfer(address _to, uint256 _value) public notLocked returns (bool) {
+  function transfer(address _to, uint256 _value) public notLocked(msg.sender, _value)  returns (bool) {
     return super.transfer(_to, _value);
   }
 
-  function transferFrom(address from, address to, uint256 value) public notLocked returns (bool) {
+  function transferFrom(address from, address to, uint256 value) public notLocked(from, value) returns (bool) {
     return super.transferFrom(from, to, value);
   }
 
