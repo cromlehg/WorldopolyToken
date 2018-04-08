@@ -70,6 +70,7 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 ### Features
 * Manually mint tokens by owner or sale agent at any time until token minting finished. 
 * Manually mint tokens in ether value by owner or sale agent at corresponding sale contract during current sale processing.  
+* setVestingPercent in token can lock percent of initial tokenholders balances
 
 ### Crowdsale stages
 
@@ -112,6 +113,4 @@ First 20% of hardcap +5% tokens bonus
 * 300 eth - 11%
 * 450 eth - 12%
 * 600 eth - 13%
-* 900 eth - 15%
-
-* 
+* 900 eth - 15% 
