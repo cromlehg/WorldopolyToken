@@ -1,6 +1,5 @@
 pragma solidity ^0.4.18;
 
-import './ownership/Ownable.sol';
 import './token/StandardToken.sol';
 import './AddressesFilterFeature.sol';
 
@@ -23,9 +22,9 @@ contract MintableToken is AddressesFilterFeature, StandardToken {
   modifier notLocked(address _from, uint _value) {
     if(!(_from == owner || _from == saleAgent || allowedAddresses[_from])) {
       require(mintingFinished);
-      if(vestingPercent < percentRate) {
+      if((vestingPercent <= percentRate) && (vestingPercent != 0)) {
         uint minLockedBalance = initialBalances[_from].mul(vestingPercent).div(percentRate);
-        require(minLockedBalance >= balances[_from].sub(_value));
+        require(minLockedBalance <= balances[_from].sub(_value));
       }
     }
     _;
