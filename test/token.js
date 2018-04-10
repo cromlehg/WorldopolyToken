@@ -4,20 +4,21 @@ import mintable from './token/mintable';
 import ownable from './token/ownable';
 import standard from './token/standard';
 
-const token = artifacts.require('GeseToken.sol');
+const token = artifacts.require('Token.sol');
 
-contract('GeseToken - BasicToken test', function (accounts) {
+contract('WorldopolysToken - BasicToken test', function (accounts) {
   basic(token, accounts);
 });
-contract('GeseToken - StandardToken test', function (accounts) {
+contract('WorldopolysToken - StandardToken test', function (accounts) {
   standard(token, accounts);
 });
-contract('GeseToken - Mintable test', function (accounts) {
+contract('WorldopolysToken - Mintable test', function (accounts) {
   mintable(token, accounts);
 });
-contract('GeseToken - Ownable test', function (accounts) {
+contract('WorldopolysToken - Ownable test', function (accounts) {
   ownable(token, accounts);
 });
-contract('GeseToken - Additional conditions test', function (accounts) {
+
+contract('WorldopolysToken - Additional conditions test', function (accounts) {
   additional(token, accounts);
 });
