@@ -20,7 +20,7 @@ contract ExtendedWalletsMintTokensFeature is /*rcentRateProvider,*/ MintTokensIn
     for(uint k = 0; k < wallets.length; k++) {
       mintTokens(wallets[k], allTokens.mul(percents[wallets[k]]).div(percentRate));
     }
-    token.finishMinting();
+
   }
 
 }
