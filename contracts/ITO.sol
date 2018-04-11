@@ -21,7 +21,7 @@ contract ITO is ExtendedWalletsMintTokensFeature, AssembledCommonSale {
 
   function calculateTokens(uint _invested) internal returns(uint) {
     uint tokens = _invested.mul(price).div(1 ether);
-    uint valueBonusTokens = getValueBonusTokens(tokens);
+    uint valueBonusTokens = getValueBonusTokens(tokens, _invested);
     if(invested < hardcap.mul(firstBonusLimitPercent).div(percentRate)) {
       tokens = tokens.add(tokens.mul(firstBonusPercent).div(percentRate));
     }

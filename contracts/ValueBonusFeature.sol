@@ -21,8 +21,8 @@ contract ValueBonusFeature is /*PercentRateProvider,*/ Ownable {
     valueBonuses.push(ValueBonus(from, bonus));
   }
 
-  function getValueBonusTokens(uint tokens) public view returns(uint) {
-    uint valueBonus = getValueBonus(tokens);
+  function getValueBonusTokens(uint tokens, uint invested) public view returns(uint) {
+    uint valueBonus = getValueBonus(invested);
     if(valueBonus == 0) {
       return 0;
     }

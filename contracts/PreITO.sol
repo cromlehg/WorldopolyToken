@@ -11,7 +11,7 @@ contract PreITO is DevFeeFeature, NextSaleAgentFeature, StagedCrowdsale, Assembl
     uint milestoneIndex = currentMilestone(start);
     Milestone storage milestone = milestones[milestoneIndex];
     uint tokens = _invested.mul(price).div(1 ether);
-    uint valueBonusTokens = getValueBonusTokens(tokens);
+    uint valueBonusTokens = getValueBonusTokens(tokens, _invested);
     if(milestone.bonus > 0) {
       tokens = tokens.add(tokens.mul(milestone.bonus).div(percentRate));
     }
