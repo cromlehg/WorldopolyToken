@@ -23,7 +23,7 @@ contract CommonSale is PercentRateFeature, InvestedProvider, WalletProvider, Ret
   uint public hardcap;
 
   modifier isUnderHardcap() {
-    require(invested < hardcap);
+    require(invested <= hardcap);
     _;
   }
 
