@@ -5,11 +5,11 @@ import {duration} from './helpers/increaseTime';
 
 import capped from './preito/capped';
 import common from './preito/common';
-import refundable from './preito/refundable';
-import refererbonus from './preito/refererbonus';
+import milestonebonus from './preito/milestonebonus';
+import valuebonus from './preito/valuebonus';
 import additional from './preito/additional';
 
-const token = artifacts.require('GeseToken.sol');
+const token = artifacts.require('Token.sol');
 const crowdsale = artifacts.require('PreITO.sol');
 
 contract('PreITO - common test', function (accounts) {
@@ -22,14 +22,14 @@ contract('PreITO - capped crowdsale test', function (accounts) {
   capped(token, crowdsale, accounts);
 });
 
-contract('PreITO - refundable crowdsale test', function (accounts) {
+contract('PreITO - milestone bonus test', function (accounts) {
   before(config);
-  refundable(token, crowdsale, accounts);
+  milestonebonus(token, crowdsale, accounts);
 });
 
-contract('PreITO - referer bonus crowdsale test', function (accounts) {
+contract('PreITO - value bonus test', function (accounts) {
   before(config);
-  refererbonus(token, crowdsale, accounts);
+  valuebonus(token, crowdsale, accounts);
 });
 
 contract('PreITO - additional features test', function (accounts) {
@@ -39,15 +39,13 @@ contract('PreITO - additional features test', function (accounts) {
 
 function config() {
   // variables list based on info from README
-  this.start = unixTime('15 May 2018 00:00:00 GMT');
-  this.period = 15;
-  this.price = tokens(7867);
-  this.softcap = ether(3640);
-  this.hardcap = ether(3818);
+  this.start = unixTime('23 Apr 2018 00:00:00 GMT');
+  this.period = 30;
+  this.price = tokens(3184);
+  this.hardcap = ether(6282);
   this.minInvestedLimit = ether(0.1);
   this.wallet = '0xa86780383E35De330918D8e4195D671140A60A74';
-  this.refererPercent = 5;
-  this.referalsMinInvestLimit = ether(1);
+  this.PercentRate = 100;
 
   // variables for additional testing convinience
   this.end = this.start + duration.days(this.period);

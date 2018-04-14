@@ -5,12 +5,11 @@ import {duration} from './helpers/increaseTime';
 
 import capped from './ito/capped';
 import common from './ito/common';
-import milestonebonus from './ito/milestonebonus';
 import bounty from './ito/bounty';
-import refererbonus from './ito/refererbonus';
+import valuebonus from './ito/valuebonus';
 import additional from './ito/additional';
 
-const token = artifacts.require('GeseToken.sol');
+const token = artifacts.require('Token.sol');
 const crowdsale = artifacts.require('ITO.sol');
 
 contract('ITO - common test', function (accounts) {
@@ -23,19 +22,14 @@ contract('ITO - capped crowdsale test', function (accounts) {
   capped(token, crowdsale, accounts);
 });
 
-contract('ITO - milestone bonus test', function (accounts) {
-  before(config);
-  milestonebonus(token, crowdsale, accounts);
-});
-
 contract('ITO - bounty test', function (accounts) {
   before(config);
   bounty(token, crowdsale, accounts);
 });
 
-contract('ITO - referer bonus crowdsale test', function (accounts) {
+contract('ITO - value bonus test', function (accounts) {
   before(config);
-  refererbonus(token, crowdsale, accounts);
+  valuebonus(token, crowdsale, accounts);
 });
 
 contract('ITO - additional features test', function (accounts) {
@@ -45,22 +39,21 @@ contract('ITO - additional features test', function (accounts) {
 
 function config() {
   // variables list based on info from README
-  this.start = unixTime('01 Jun 2018 00:00:00 GMT');
-  this.period = 30;
-  this.price = tokens(5500);
-  this.hardcap = ether(49090);
+  this.start = unixTime('25 May 2018 00:00:00 GMT');
+  this.period = 44;
+  this.price = tokens(3184);
+  this.hardcap = ether(37697);
   this.minInvestedLimit = ether(0.1);
+  this.firstBonusPercent = 5;
+  this.firstBonusLimitPercent = 20;
   this.wallet = '0x98882D176234AEb736bbBDB173a8D24794A3b085';
-  this.BountyTokensWallet = '0x28732f6dc12606D529a020b9ac04C9d6f881D3c5';
-  this.AdvisorsTokensWallet = '0x28732f6dc12606D529a020b9ac04C9d6f881D3c5';
-  this.TeamTokensWallet = '0x28732f6dc12606D529a020b9ac04C9d6f881D3c5';
-  this.ReservedTokensWallet = '0x28732f6dc12606D529a020b9ac04C9d6f881D3c5';
-  this.BountyTokensPercent = 5;
-  this.AdvisorsTokensPercent = 10;
-  this.TeamTokensPercent = 10;
-  this.ReservedTokensPercent = 10;
-  this.refererPercent = 5;
-  this.referalsMinInvestLimit = ether(1);
+  this.TeamTokensWallet = '0x98882D176234AEb736bbBDB173a8D24794A3b085';
+  this.MarketingTokensWallet = '0xa86780383E35De330918D8e4195D671140A60A74';
+  this.ReservedTokensWallet = '0x675eDE27cafc8Bd07bFCDa6fEF6ac25031c74766';
+  this.TeamTokensPercent = 15;
+  this.MarketingTokensPercent = 5;
+  this.ReservedTokensPercent = 5;
+  this.PercentRate = 100;
 
   // variables for additional testing convinience
   this.end = this.start + duration.days(this.period);

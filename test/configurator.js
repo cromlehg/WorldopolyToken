@@ -11,7 +11,7 @@ const should = require('chai')
   .should();
 
 const Configurator = artifacts.require('Configurator.sol');
-const Token = artifacts.require('GeseToken.sol');
+const Token = artifacts.require('Token.sol');
 const PreITO = artifacts.require('PreITO.sol');
 const ITO = artifacts.require('ITO.sol');
 
@@ -55,28 +55,23 @@ contract('Configurator integration test', function (accounts) {
 
   it('preITO and ITO should have start time as described in README', async function () {
     const preitoStart = await preito.start();
-    preitoStart.should.bignumber.equal((new Date('15 May 2018 00:00:00 GMT')).getTime() / 1000);
+    preitoStart.should.bignumber.equal((new Date('23 Apr 2018 00:00:00 GMT')).getTime() / 1000);
     const itoStart = await ito.start();
-    itoStart.should.bignumber.equal((new Date('01 Jun 2018 00:00:00 GMT')).getTime() / 1000);
+    itoStart.should.bignumber.equal((new Date('25 May 2018 00:00:00 GMT')).getTime() / 1000);
   });
 
   it ('preTCO and ITO should have price as described in README', async function () {
     const preitoPrice = await preito.price();
-    preitoPrice.should.bignumber.equal(tokens(7867));
+    preitoPrice.should.bignumber.equal(tokens(3184));
     const itoPrice = await ito.price();
-    itoPrice.should.bignumber.equal(tokens(5500));
-  });
-
-  it ('preITO should have softcap as described in README', async function () {
-    const preitoSoftcap = await preito.softcap();
-    preitoSoftcap.should.bignumber.equal(ether(3640));
+    itoPrice.should.bignumber.equal(tokens(3184));
   });
 
   it ('preITO and ITO should have hardcap as described in README', async function () {
     const preitoHardcap = await preito.hardcap();
-    preitoHardcap.should.bignumber.equal(ether(3818));
+    preitoHardcap.should.bignumber.equal(ether(6282));
     const itoHardcap = await ito.hardcap();
-    itoHardcap.should.bignumber.equal(ether(49090));
+    itoHardcap.should.bignumber.equal(ether(37697));
   });
 
   it ('preITO and ITO should have minimal insvested limit as described in README', async function () {
@@ -86,17 +81,6 @@ contract('Configurator integration test', function (accounts) {
     itoMinInvest.should.bignumber.equal(ether(0.1));
   });
 
-  it ('bounty, advisors, team, reserved percent should be as described in README', async function () {
-    const bountyPercent = await ito.bountyTokensPercent();
-    bountyPercent.should.bignumber.equal(5);
-    const advisorsPercent = await ito.advisorsTokensPercent();
-    advisorsPercent.should.bignumber.equal(10);
-    const teamPercent = await ito.teamTokensPercent();
-    teamPercent.should.bignumber.equal(10);
-    const reservedPercent = await ito.reservedTokensPercent();
-    reservedPercent.should.bignumber.equal(10);
-  });
-
   it ('preITO and ITO should have wallets as described in README', async function () {
     const preitoWallet = await preito.wallet();
     preitoWallet.should.bignumber.equal('0xa86780383E35De330918D8e4195D671140A60A74');
@@ -104,15 +88,14 @@ contract('Configurator integration test', function (accounts) {
     itoWallet.should.bignumber.equal('0x98882D176234AEb736bbBDB173a8D24794A3b085');
   });
 
-  it ('bounty wallet, advisors wallet, team wallet, reserved wallet should be as described in README', async function () {
-    const bountyWallet = await ito.bountyTokensWallet();
-    bountyWallet.should.bignumber.equal('0x28732f6dc12606D529a020b9ac04C9d6f881D3c5');
-    const advisorsWallet = await ito.advisorsTokensWallet();
-    advisorsWallet.should.bignumber.equal('0x28732f6dc12606D529a020b9ac04C9d6f881D3c5');
-    const teamWallet = await ito.teamTokensWallet();
-    teamWallet.should.bignumber.equal('0x28732f6dc12606D529a020b9ac04C9d6f881D3c5');
-    const reservedWallet = await ito.reservedTokensWallet();
-    reservedWallet.should.bignumber.equal('0x28732f6dc12606D529a020b9ac04C9d6f881D3c5');
+  it ('bounty team wallet, marketing wallet and reserved wallet should be as described in README', async function () {
+    const teamWallet = await ito.wallets(0);
+    teamWallet.should.bignumber.equal('0x98882D176234AEb736bbBDB173a8D24794A3b085');
+    const marketingWallet = await ito.wallets(1);
+    marketingWallet.should.bignumber.equal('0xa86780383E35De330918D8e4195D671140A60A74');
+    const reservedWallet = await ito.wallets(2);
+    reservedWallet.should.bignumber.equal('0x675eDE27cafc8Bd07bFCDa6fEF6ac25031c74766');
   });
+
 });
 

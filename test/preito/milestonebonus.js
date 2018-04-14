@@ -13,11 +13,9 @@ export default function (Token, Crowdsale, wallets) {
   let token;
   let crowdsale;
   const milestones = [
-    {day: 4, bonus: 33},
-    {day: 4, bonus: 18},
-    {day: 4, bonus: 11},
-    {day: 4, bonus: 5},
-    {day: 4, bonus: 0}
+    {day: 9, bonus: 20},
+    {day: 9, bonus: 15},
+    {day: 9, bonus: 10}
   ];
 
   before(async function () {
@@ -31,23 +29,30 @@ export default function (Token, Crowdsale, wallets) {
     await token.setSaleAgent(crowdsale.address);
     await crowdsale.setToken(token.address);
     await crowdsale.setStart(latestTime());
+    await crowdsale.addMilestone(10, 20);
+    await crowdsale.addMilestone(10, 15);
+    await crowdsale.addMilestone(10, 10);
     await crowdsale.setPrice(this.price);
     await crowdsale.setHardcap(this.hardcap);
     await crowdsale.setMinInvestedLimit(this.minInvestedLimit);
-    await crowdsale.addMilestone(5, 33);
-    await crowdsale.addMilestone(5, 18);
-    await crowdsale.addMilestone(5, 11);
-    await crowdsale.addMilestone(5, 5);
-    await crowdsale.addMilestone(10, 0);
     await crowdsale.setWallet(this.wallet);
-    await crowdsale.setBountyTokensWallet(this.BountyTokensWallet);
-    await crowdsale.setAdvisorsTokensWallet(this.AdvisorsTokensWallet);
-    await crowdsale.setTeamTokensWallet(this.TeamTokensWallet);
-    await crowdsale.setReservedTokensWallet(this.ReservedTokensWallet);
-    await crowdsale.setBountyTokensPercent(this.BountyTokensPercent);
-    await crowdsale.setAdvisorsTokensPercent(this.AdvisorsTokensPercent);
-    await crowdsale.setTeamTokensPercent(this.TeamTokensPercent);
-    await crowdsale.setReservedTokensPercent(this.ReservedTokensPercent);
+    await crowdsale.addValueBonus(3000000000000000000, 10);
+    await crowdsale.addValueBonus(6000000000000000000, 15);
+    await crowdsale.addValueBonus(9000000000000000000, 20);
+    await crowdsale.addValueBonus(12000000000000000000, 25);
+    await crowdsale.addValueBonus(15000000000000000000, 30);
+    await crowdsale.addValueBonus(21000000000000000000, 40);
+    await crowdsale.addValueBonus(30000000000000000000, 50);
+    await crowdsale.addValueBonus(48000000000000000000, 60);
+    await crowdsale.addValueBonus(75000000000000000000, 70);
+    await crowdsale.addValueBonus(120000000000000000000, 80);
+    await crowdsale.addValueBonus(150000000000000000000, 90);
+    await crowdsale.addValueBonus(225000000000000000000, 100);
+    await crowdsale.addValueBonus(300000000000000000000, 110);
+    await crowdsale.addValueBonus(450000000000000000000, 120);
+    await crowdsale.addValueBonus(600000000000000000000, 130);
+    await crowdsale.addValueBonus(900000000000000000000, 150);
+    await crowdsale.setPercentRate(this.PercentRate);
   });
 
   milestones.forEach((milestone, i) => {

@@ -26,6 +26,7 @@ export default function (Token, Crowdsale, TokenDistributor, wallets) {
     crowdsale = await Crowdsale.new();
     tokendistributor = await TokenDistributor.new();
     await token.setSaleAgent(crowdsale.address);
+    await token.setVestingPercent(0);
     await crowdsale.setToken(token.address);
     await crowdsale.setStart(latestTime());
     await token.transferOwnership(wallets[1]);
@@ -33,31 +34,40 @@ export default function (Token, Crowdsale, TokenDistributor, wallets) {
     await tokendistributor.setToken(token.address);
     await tokendistributor.transferOwnership(wallets[1]);
 
+    await crowdsale.setPeriod(this.period);
     await crowdsale.setPrice(this.price);
     await crowdsale.setHardcap(this.hardcap);
     await crowdsale.setMinInvestedLimit(this.minInvestedLimit);
-    await crowdsale.addMilestone(5, 33);
-    await crowdsale.addMilestone(5, 18);
-    await crowdsale.addMilestone(5, 11);
-    await crowdsale.addMilestone(5, 5);
-    await crowdsale.addMilestone(10, 0);
+    await crowdsale.setFirstBonusPercent(this.firstBonusPercent);
+    await crowdsale.setFirstBonusLimitPercent(this.firstBonusLimitPercent);
     await crowdsale.setWallet(this.wallet);
-    await crowdsale.setBountyTokensWallet(this.BountyTokensWallet);
-    await crowdsale.setAdvisorsTokensWallet(this.AdvisorsTokensWallet);
-    await crowdsale.setTeamTokensWallet(this.TeamTokensWallet);
-    await crowdsale.setReservedTokensWallet(this.ReservedTokensWallet);
-    await crowdsale.setBountyTokensPercent(this.BountyTokensPercent);
-    await crowdsale.setAdvisorsTokensPercent(this.AdvisorsTokensPercent);
-    await crowdsale.setTeamTokensPercent(this.TeamTokensPercent);
-    await crowdsale.setReservedTokensPercent(this.ReservedTokensPercent);
-    await crowdsale.transferOwnership(wallets[1]);
+    await crowdsale.addWallet(this.TeamTokensWallet, this.TeamTokensPercent);
+    await crowdsale.addWallet(this.MarketingTokensWallet, this.MarketingTokensPercent);
+    await crowdsale.addWallet(this.ReservedTokensWallet, this.ReservedTokensPercent);
+    await crowdsale.addValueBonus(3000000000000000000, 10);
+    await crowdsale.addValueBonus(6000000000000000000, 15);
+    await crowdsale.addValueBonus(9000000000000000000, 20);
+    await crowdsale.addValueBonus(12000000000000000000, 25);
+    await crowdsale.addValueBonus(15000000000000000000, 30);
+    await crowdsale.addValueBonus(21000000000000000000, 40);
+    await crowdsale.addValueBonus(30000000000000000000, 50);
+    await crowdsale.addValueBonus(48000000000000000000, 60);
+    await crowdsale.addValueBonus(75000000000000000000, 70);
+    await crowdsale.addValueBonus(120000000000000000000, 80);
+    await crowdsale.addValueBonus(150000000000000000000, 90);
+    await crowdsale.addValueBonus(225000000000000000000, 100);
+    await crowdsale.addValueBonus(300000000000000000000, 110);
+    await crowdsale.addValueBonus(450000000000000000000, 120);
+    await crowdsale.addValueBonus(600000000000000000000, 130);
+    await crowdsale.addValueBonus(900000000000000000000, 150);
+    await crowdsale.setPercentRate(this.PercentRate);
   });
 
   it ('should retrieve tokens to addresses in list', async function () {
-    await crowdsale.sendTransaction({value: ether(1), from: wallets[1]});
-    await crowdsale.finish({from: wallets[1]});
+    await crowdsale.sendTransaction({value: ether(2), from: wallets[1]});
+    await crowdsale.finish();
 
-    const totalbalance = tokens(500);
+    const totalbalance = tokens(400);
     await token.transfer(tokendistributor.address, totalbalance, {from: wallets[1]});
 
     const receivers = [wallets[2],wallets[3]];
@@ -74,14 +84,14 @@ export default function (Token, Crowdsale, TokenDistributor, wallets) {
   });
 
   it ('should reject if not enough tokens', async function () {
-    await crowdsale.sendTransaction({value: ether(1), from: wallets[1]});
-    await crowdsale.finish({from: wallets[1]});
+    await crowdsale.sendTransaction({value: ether(2), from: wallets[1]});
+    await crowdsale.finish();
 
     const totalbalance = tokens(100);
     await token.transfer(tokendistributor.address, totalbalance, {from: wallets[1]});
 
     const receivers = [wallets[2],wallets[3]];
-    const balances = [tokens(100), tokens(200)];
+    const balances = [tokens(200), tokens(200)];
     await tokendistributor.addReceivers(receivers, balances, {from: wallets[1]}).should.be.rejectedWith(EVMRevert);
 
     const balance_1 = await token.balanceOf(tokendistributor.address);
@@ -94,10 +104,10 @@ export default function (Token, Crowdsale, TokenDistributor, wallets) {
   });
 
   it ('should retrieve current tokens to owner', async function () {
-    await crowdsale.sendTransaction({value: ether(1), from: wallets[1]});
-    await crowdsale.finish({from: wallets[1]});
+    await crowdsale.sendTransaction({value: ether(2), from: wallets[1]});
+    await crowdsale.finish();
 
-    const totalbalance = tokens(500);
+    const totalbalance = tokens(400);
     await token.transfer(tokendistributor.address, totalbalance, {from: wallets[1]});
 
     const before = await token.balanceOf(tokendistributor.address);
