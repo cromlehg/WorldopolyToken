@@ -65,7 +65,7 @@ contract TestConfigurator is Ownable {
     preITO.setMinInvestedLimit(100000000000000000);
     preITO.setHardcap(6282000000000000000000);
     preITO.setToken(token);
-    preITO.setPercentRate(1000);
+    preITO.setPercentRate(100);
     preITO.addValueBonus(3000000000000000000, 10);
     preITO.addValueBonus(6000000000000000000, 15);
     preITO.addValueBonus(9000000000000000000, 20);
@@ -95,11 +95,11 @@ contract TestConfigurator is Ownable {
     ito.setMinInvestedLimit(100000000000000000);
     ito.setHardcap(37697000000000000000000);
     ito.setWallet(0x8fD94be56237EA9D854B23B78615775121Dd1E82);
-    ito.addWallet(0xaa8ed6878a202eF6aFC518a64D2ccB8D73f1f2Ca, 150);
-    ito.addWallet(0x24a7774d0eba02846580A214eeca955214cA776C, 50);
-    ito.addWallet(0xaa8ed6878a202eF6aFC518a64D2ccB8D73f1f2Ca, 50);
+    ito.addWallet(0xaa8ed6878a202eF6aFC518a64D2ccB8D73f1f2Ca, 15);
+    ito.addWallet(0x24a7774d0eba02846580A214eeca955214cA776C, 5);
+    ito.addWallet(0xaa8ed6878a202eF6aFC518a64D2ccB8D73f1f2Ca, 5);
     ito.setToken(token);
-    ito.setPercentRate(1000);
+    ito.setPercentRate(100);
     ito.addValueBonus(3000000000000000000, 10);
     ito.addValueBonus(6000000000000000000, 15);
     ito.addValueBonus(9000000000000000000, 20);
