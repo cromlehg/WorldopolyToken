@@ -8,7 +8,7 @@ contract ExtendedWalletsMintTokensFeature is /*PercentRateProvider,*/ MintTokens
 
   using SafeMath for uint;
 
-  uint public percentRate = 100;
+  uint public percentRate = 1000;
 
   function mintExtendedTokens() public onlyOwner {
     uint summaryTokensPercent = 0;
