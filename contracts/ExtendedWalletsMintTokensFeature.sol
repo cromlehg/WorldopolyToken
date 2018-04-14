@@ -4,7 +4,7 @@ import './MintTokensInterface.sol';
 import './WalletsPercents.sol';
 //import './PercentRateProvider.sol';
 
-contract ExtendedWalletsMintTokensFeature is /*rcentRateProvider,*/ MintTokensInterface, WalletsPercents {
+contract ExtendedWalletsMintTokensFeature is /*PercentRateProvider,*/ MintTokensInterface, WalletsPercents {
 
   using SafeMath for uint;
 
@@ -13,7 +13,7 @@ contract ExtendedWalletsMintTokensFeature is /*rcentRateProvider,*/ MintTokensIn
   function mintExtendedTokens() public onlyOwner {
     uint summaryTokensPercent = 0;
     for(uint i = 0; i < wallets.length; i++) {
-      summaryTokensPercent.add(percents[wallets[i]]);
+      summaryTokensPercent = summaryTokensPercent.add(percents[wallets[i]]);
     }
     uint mintedTokens = token.totalSupply();
     uint allTokens = mintedTokens.mul(percentRate).div(percentRate.sub(summaryTokensPercent));
