@@ -54,7 +54,7 @@ export default function (Token, Crowdsale, wallets) {
     await crowdsale.setPercentRate(this.PercentRate);
   });
 
-  it('should correctly calculate bonuses', async function () {
+  it('should correctly calculate bonuses for team, marketing, resserved wallets', async function () {
     await crowdsale.sendTransaction({value: ether(1), from: wallets[1]});
     await crowdsale.sendTransaction({value: ether(1), from: wallets[2]});
     const owner = await crowdsale.owner();
@@ -71,9 +71,9 @@ export default function (Token, Crowdsale, wallets) {
       .plus(marketingTokens)
       .plus(reservedTokens);
    
-    assert.equal(Math.round(teamTokens.mul(100).div(totalTokens)), this.TeamTokensPercent);
-    assert.equal(Math.round(marketingTokens.mul(100).div(totalTokens)), this.MarketingTokensPercent);
-    assert.equal(Math.round(reservedTokens.mul(100).div(totalTokens)), this.ReservedTokensPercent);   
+    assert.equal(Math.round(teamTokens.mul(this.PercentRate).div(totalTokens)), this.TeamTokensPercent);
+    assert.equal(Math.round(marketingTokens.mul(this.PercentRate).div(totalTokens)), this.MarketingTokensPercent);
+    assert.equal(Math.round(reservedTokens.mul(this.PercentRate).div(totalTokens)), this.ReservedTokensPercent);   
   });
 
 }

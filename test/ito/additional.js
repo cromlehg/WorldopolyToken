@@ -92,4 +92,30 @@ export default function (Token, Crowdsale, wallets) {
     const post = web3.eth.getBalance(this.wallet);
     post.minus(pre).should.bignumber.equal(investment);
   });
+
+  it('should add 5% bonus for first 20% investments', async function () {
+    const lowHardcap = ether(10);
+    await crowdsale.setHardcap(lowHardcap);
+    const limit = this.firstBonusLimitPercent;
+    const baseInvestment = lowHardcap.mul(limit).div(this.PercentRate);
+    const investment = baseInvestment - ether(0.1);
+    const baseTokens = this.price.mul(investment).div(ether(1)); 
+    await crowdsale.sendTransaction({value: investment, from: wallets[1]});
+    const balance = await token.balanceOf(wallets[1]);
+    balance.should.bignumber.equal(baseTokens.times(1 + this.firstBonusPercent / this.PercentRate));
+  });
+
+  it('should not add bonus when investments is more then 20% hardcap', async function () {
+    const lowHardcap = ether(10);
+    await crowdsale.setHardcap(lowHardcap);
+    const limit = this.firstBonusLimitPercent;
+    const baseInvestment = lowHardcap.mul(limit).div(this.PercentRate);  
+    await crowdsale.sendTransaction({value: baseInvestment, from: wallets[1]});  
+
+    const investment = ether(1);
+    const baseTokens = this.price.mul(investment).div(ether(1));
+    await crowdsale.sendTransaction({value: investment, from: wallets[2]});
+    const balance = await token.balanceOf(wallets[2]);
+    balance.should.bignumber.equal(baseTokens);
+  });
 }

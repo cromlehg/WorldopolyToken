@@ -21,16 +21,16 @@ function config() {
   this.price = tokens(3184);
   this.hardcap = ether(37697);
   this.minInvestedLimit = ether(0.1);
-  this.firstBonusPercent = 5;
-  this.firstBonusLimitPercent = 20;
+  this.firstBonusPercent = 50;
+  this.firstBonusLimitPercent = 200;
   this.wallet = '0x98882D176234AEb736bbBDB173a8D24794A3b085';
   this.TeamTokensWallet = '0x98882D176234AEb736bbBDB173a8D24794A3b085';
   this.MarketingTokensWallet = '0xa86780383E35De330918D8e4195D671140A60A74';
   this.ReservedTokensWallet = '0x675eDE27cafc8Bd07bFCDa6fEF6ac25031c74766';
-  this.TeamTokensPercent = 15;
-  this.MarketingTokensPercent = 5;
-  this.ReservedTokensPercent = 5;
-  this.PercentRate = 100;
+  this.TeamTokensPercent = 150;
+  this.MarketingTokensPercent = 50;
+  this.ReservedTokensPercent = 50;
+  this.PercentRate = 1000;
 
   // variables for additional testing convinience
   this.end = this.start + duration.days(this.period);

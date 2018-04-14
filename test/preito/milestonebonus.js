@@ -13,9 +13,9 @@ export default function (Token, Crowdsale, wallets) {
   let token;
   let crowdsale;
   const milestones = [
-    {day: 9, bonus: 20},
-    {day: 9, bonus: 15},
-    {day: 9, bonus: 10}
+    {day: 9, bonus: 200},
+    {day: 9, bonus: 150},
+    {day: 9, bonus: 100}
   ];
 
   before(async function () {
@@ -29,9 +29,9 @@ export default function (Token, Crowdsale, wallets) {
     await token.setSaleAgent(crowdsale.address);
     await crowdsale.setToken(token.address);
     await crowdsale.setStart(latestTime());
-    await crowdsale.addMilestone(10, 20);
-    await crowdsale.addMilestone(10, 15);
-    await crowdsale.addMilestone(10, 10);
+    await crowdsale.addMilestone(10, 200);
+    await crowdsale.addMilestone(10, 150);
+    await crowdsale.addMilestone(10, 100);
     await crowdsale.setPrice(this.price);
     await crowdsale.setHardcap(this.hardcap);
     await crowdsale.setMinInvestedLimit(this.minInvestedLimit);
@@ -56,11 +56,11 @@ export default function (Token, Crowdsale, wallets) {
   });
 
   milestones.forEach((milestone, i) => {
-    it(`should add ${milestone.bonus}% bonus for milestone #${i}`, async function () {
+    it(`should add ${milestone.bonus / 10}% bonus for milestone #${i}`, async function () {
       await increaseTimeTo(latestTime() + duration.days(milestone.day));
       await crowdsale.sendTransaction({value: ether(1), from: wallets[i]});
       const balance = await token.balanceOf(wallets[i]);
-      const value = this.price.times(1 + milestone.bonus / 100);
+      const value = this.price.times(1 + milestone.bonus / this.PercentRate);
       balance.should.be.bignumber.equal(value);
     });
   });

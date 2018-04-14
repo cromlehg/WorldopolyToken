@@ -45,7 +45,7 @@ function config() {
   this.hardcap = ether(6282);
   this.minInvestedLimit = ether(0.1);
   this.wallet = '0xa86780383E35De330918D8e4195D671140A60A74';
-  this.PercentRate = 100;
+  this.PercentRate = 1000;
 
   // variables for additional testing convinience
   this.end = this.start + duration.days(this.period);
