@@ -8,13 +8,15 @@ import './ITO.sol';
 
 contract Configurator is Ownable {
 
-  MintableToken public token;
+  Token public token;
 
   PreITO public preITO;
 
   ITO public ito;
 
   function deploy() public onlyOwner {
+
+    address manager = 0x675eDE27cafc8Bd07bFCDa6fEF6ac25031c74766;
 
     token = new Token();
 
@@ -26,27 +28,26 @@ contract Configurator is Ownable {
 
     preITO.setWallet(0xa86780383E35De330918D8e4195D671140A60A74);
     preITO.setStart(1524441600);
-    preITO.addMilestone(9, 200);
-    preITO.addMilestone(10, 150);
-    preITO.addMilestone(10, 100);
+    preITO.addMilestone(10, 20);
+    preITO.addMilestone(10, 15);
+    preITO.addMilestone(10, 10);
     preITO.setHardcap(6282000000000000000000);
 
     token.setSaleAgent(preITO);
+    token.setVestingPercent(0);
 
     ito.setWallet(0x98882D176234AEb736bbBDB173a8D24794A3b085);
     ito.setStart(1527206400);
     ito.setPeriod(44);
-    ito.setFirstBonusPercent(50);
-    ito.setFirstBonusLimitPercent(200);
+    ito.setFirstBonusPercent(5);
+    ito.setFirstBonusLimitPercent(20);
     ito.setHardcap(37697000000000000000000);
 
-    ito.addWallet(0x98882D176234AEb736bbBDB173a8D24794A3b085, 150);
-    ito.addWallet(0xa86780383E35De330918D8e4195D671140A60A74, 50);
-    ito.addWallet(0x675eDE27cafc8Bd07bFCDa6fEF6ac25031c74766, 50);
+    ito.addWallet(0x98882D176234AEb736bbBDB173a8D24794A3b085, 15);
+    ito.addWallet(0xa86780383E35De330918D8e4195D671140A60A74, 5);
+    ito.addWallet(0x675eDE27cafc8Bd07bFCDa6fEF6ac25031c74766, 5);
 
     preITO.setNextSaleAgent(ito);
-
-    address manager = 0x675eDE27cafc8Bd07bFCDa6fEF6ac25031c74766;
 
     token.transferOwnership(manager);
     preITO.transferOwnership(manager);
@@ -54,7 +55,7 @@ contract Configurator is Ownable {
   }
 
   function commonConfigure(AssembledCommonSale sale) internal {
-    sale.setPercentRate(1000);
+    sale.setPercentRate(100);
     sale.setMinInvestedLimit(100000000000000000);
     sale.setPrice(3184000000000000000000);
     sale.addValueBonus(3000000000000000000, 10);
