@@ -82,7 +82,7 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 * _Wallet_                      : 
 
 ##### Milestones
-1. 9 days, bonus +20%
+1. 10 days, bonus +20%
 2. 10 days, bonus +15%
 3. 10 days, bonus +10%
 
