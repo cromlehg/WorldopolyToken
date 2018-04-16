@@ -119,9 +119,9 @@ First 20% of hardcap +5% tokens bonus
 ## Ropsten network configuration 
 
 ### Links
-1. _Token_ - https://ropsten.etherscan.io/address/0xed3255bdc91aecf21e595a4ed7ee0a15543ebc1d
-2. _PreITO_ - https://ropsten.etherscan.io/address/0x0293679abedbd298f4d7021a076a780c0c6c63a1
-3. _ITO_ - https://ropsten.etherscan.io/address/0x76c35ead0ca8f90875903c906c8d3c88673f29ce
+1. _Token_ - https://ropsten.etherscan.io/address/0xcb97df60e1bc485bf882bf3d8370589bbb64c91b
+2. _PreITO_ - https://ropsten.etherscan.io/address/0xd51c2fcc525bd782b4f7a5b241c591bce2e7e99c
+3. _ITO_ - https://ropsten.etherscan.io/address/0x9c5834c43b2ed54a12b798d8fcf2580102540717
 
 
 ### Crowdsale stages
@@ -140,22 +140,22 @@ First 20% of hardcap +5% tokens bonus
 
 ##### Purchasers
 
-* 1 ETH => 3,820.8 tokens, gas = 166780
-https://ropsten.etherscan.io/tx/0x08d66ce0c0c9820178b40d8be7ce0e8478b853829e4842757adac4f46f013a23
+* 1 ETH => 3,820.8 tokens, gas = 151318
+https://ropsten.etherscan.io/tx/0x1c54ed23a51f50e7025d997ba9e2fe15e291474b6f1f353a829239b12df400bd
 
-* 1 ETH => 3,661.6 tokens, gas = 80308
-https://ropsten.etherscan.io/tx/0xc8853dfce81cc766f9aa293505159997f4c3e4e619a98eeb369195929848a689
+* 1 ETH => 3,661.6 tokens, gas = 93545
+https://ropsten.etherscan.io/tx/0x6b3ce1d103ba7aa96259ed204017c932455632e94a2678b961aa50bfd53f160f
 
 * 0.01 ETH => rejected txn, less then mininal investment limit, gas = 22598
-https://ropsten.etherscan.io/tx/0x10974be15194bc6f961819dfa2362b0e2df47e32219bff8ef81c778306682045
+https://ropsten.etherscan.io/tx/0x5b84546d85738483bb8a672399d419925eff5e648b4bdeb39f6054e8cb0b6367
 
 ##### Service operations
 
-* setStart, gas = 27978
-https://ropsten.etherscan.io/tx/0xad373bb58ef6d1866238b3f7400397fb426ecd5b000117215aeb75a7df29e97f
+* setStart, gas = 28042
+https://ropsten.etherscan.io/tx/0xcb2546a73a6073663772109713c9f6508835d6b2f61dbb83a2366ca0d043b04a
 
 * finish, gas = 30571
-https://ropsten.etherscan.io/tx/0x074baf4b94805d61b5a98906414dfc468792463230f7568c49a0689e7ea502b8
+https://ropsten.etherscan.io/tx/0x8a4d99ea2884f2c283e3dd2a9e5f3640f4cef09c2c51b1983df28542754a8c87
 
 #### ITO
 * _Minimal insvested limit_     : 0.1 ETH
@@ -194,20 +194,35 @@ First 20% of hardcap +5% tokens bonus
 
 ##### Purchasers
 
-* 1 ETH => 3,184 tokens, gas = 107307
-https://ropsten.etherscan.io/tx/0xfebd23dd2c57b0d815a2fa615e9581fdfbaff54e24f7e84e9c0ce44053cfca54
+* 1 ETH => 3,184 tokens, gas = 76845
+https://ropsten.etherscan.io/tx/0x8373d4821a2c5a480dd33b8d5bfe2be7b17d1f80e3d6dcff6a97eae9c1dd349c
 
-* 3.1 ETH => 9,969.104 tokens, gas = 79019
-https://ropsten.etherscan.io/tx/0x600675965a3de21823325a5c940f36d1b0cfb0b1db93379346ae9df3e9b3d215
+* 3.1 ETH => 9,969.104 tokens, gas = 63557
+https://ropsten.etherscan.io/tx/0x79bcf3a597111f7119dbab8b0785a616ef22c664bd794fb236beec4146e2cd78
 
 * 1 ETH => rejected txn, ITO is finished, gas = 36852
-https://ropsten.etherscan.io/tx/0x56ee1352c9e4c3f2ed101ebff0f15f5f4551884f14da5e6446688d58adf3215a
+https://ropsten.etherscan.io/tx/0xffcafbc5e2cd79093c4fa640611b6b0b580a60913bec61ea05204b1316074458
 
 ##### Service operations
 
-* finish, gas = 203751
-https://ropsten.etherscan.io/tx/0x407c823f63d891eb67dce7b1fc36e82c23b6322b22f59cc58302a89f4d300870
+* finish, gas = 172365
+https://ropsten.etherscan.io/tx/0x641bab63bc51edf47d16762ffd130af89d21ac5c29e684b6fa04fc9575dd609b
 
 
 ### Token holders
-https://ropsten.etherscan.io/token/0xed3255bdc91aecf21e595a4ed7ee0a15543ebc1d#balances
+https://ropsten.etherscan.io/token/0xcb97df60e1bc485bf882bf3d8370589bbb64c91b#balances
+
+
+### Token transfers
+
+* transfer 61.6 tokens (vesting percent allows), gas = 55876
+https://ropsten.etherscan.io/tx/0xbc5b58589ccc979d848cf5d6dc61b372188ac6d5c95de6effcae7b91ac1e6a2f
+
+* transfer 3000 tokens (more then vesting percent allows) => rejected txn, not allowed address, gas = 26909
+https://ropsten.etherscan.io/tx/0xea0966ace39ca5f5f9ff44adad164cc6b672dbd473f1f7b4613270fec4aceba9
+
+* addAllowedAddress, gas = 43946
+https://ropsten.etherscan.io/tx/0xa3fab69aae9a648d25c4317dafb612bfdffd244abc18b288472d0dbf5b661ebe
+
+* transfer 3000 tokens (allowed address), gas = 38948
+https://ropsten.etherscan.io/tx/0x40b4e81cc643e82489518ed3963f9af357cb80c786b9e7fb3faea244e7546400
