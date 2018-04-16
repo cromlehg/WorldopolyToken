@@ -118,4 +118,30 @@ export default function (Token, Crowdsale, wallets) {
     const balance = await token.balanceOf(wallets[2]);
     balance.should.bignumber.equal(baseTokens);
   });
+
+  it('should transfer from not allowed address after call to finishMinting if it saves vesting percent of funds', async function () {
+    const owner = await crowdsale.owner();
+    await token.removeAllowedAddress(wallets[2]);
+    await token.setVestingPercent(10);
+    await crowdsale.sendTransaction({value: ether(1), from: wallets[2]});
+    await token.approve(wallets[2], tokens(300));
+    await crowdsale.finish({from: owner});
+    await token.transfer(wallets[3], tokens(300), {from: wallets[2]}).should.be.fulfilled;
+    const balance = await token.balanceOf(wallets[3]);
+  
+    balance.should.bignumber.equal(tokens(300));
+  }); 
+
+  it('should reject transfer from not allowed address after call to finishMinting if it cuts vesting percent of funds', async function () {
+    const owner = await crowdsale.owner();
+    await token.removeAllowedAddress(wallets[2]);
+    await token.setVestingPercent(90);
+    await crowdsale.sendTransaction({value: ether(1), from: wallets[2]});
+    await token.approve(wallets[2], tokens(3000));
+    await crowdsale.finish({from: owner});
+    await token.transfer(wallets[3], tokens(3000), {from: wallets[2]}).should.be.rejectedWith(EVMRevert);
+    const balance = await token.balanceOf(wallets[3]);
+  
+    assert.equal(balance, 0);
+  }); 
 }

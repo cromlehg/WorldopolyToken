@@ -5,9 +5,7 @@ import './MintTokensInterface.sol';
 contract MintTokensFeature is MintTokensInterface {
 
   function mintTokens(address to, uint tokens) internal {
-    token.mint(this, tokens);
-    token.transfer(to, tokens);
+    token.mint(to, tokens);
   }
 
 }
-

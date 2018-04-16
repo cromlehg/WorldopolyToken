@@ -49,6 +49,7 @@ contract MintableToken is AddressesFilterFeature, StandardToken {
     initialBalances[_to] = balances[_to];
 
     Mint(_to, _amount);
+    Transfer(address(0), _to, _amount);
     return true;
   }
 
