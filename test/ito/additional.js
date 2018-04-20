@@ -135,7 +135,7 @@ export default function (Token, Crowdsale, wallets) {
   it('should reject transfer from not allowed address after call to finishMinting if it cuts vesting percent of funds', async function () {
     const owner = await crowdsale.owner();
     await token.removeAllowedAddress(wallets[2]);
-    await token.setVestingPercent(90);
+    await token.setVestingPercent(100);
     await crowdsale.sendTransaction({value: ether(1), from: wallets[2]});
     await token.approve(wallets[2], tokens(3000));
     await crowdsale.finish({from: owner});
