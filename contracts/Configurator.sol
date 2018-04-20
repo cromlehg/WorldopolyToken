@@ -34,7 +34,7 @@ contract Configurator is Ownable {
     preITO.setHardcap(6282000000000000000000);
 
     token.setSaleAgent(preITO);
-    token.setVestingPercent(0);
+    token.setVestingPercent(100);
 
     ito.setWallet(0x029fa7ef4E852Bb53CcbafA2308eE728320A5B8d);
     ito.setStart(1527206400);
