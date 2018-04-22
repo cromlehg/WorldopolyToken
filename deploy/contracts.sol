@@ -723,6 +723,32 @@ contract ExtendedWalletsMintTokensFeature is MintTokensInterface, WalletsPercent
 
 }
 
+contract ByteBallWallet is Ownable {
+    
+    address public target;
+    
+    uint public locked;
+    
+    address token;
+    
+    function setToken(address _token) public onlyOwner {
+        token = _token;
+    }
+    
+    function setLocked(uint _locked) public onlyOwner {
+        locked = _locked;
+    }
+    
+    function setTarget(address _target) public onlyOwner {
+        target = _target;
+    }
+    
+    function retreiveTokens() public {
+        require(msg.sender == target && now > locked);
+        ERC20Basic(token).transfer(target, ERC20Basic(token).balanceOf(this));
+    }
+    
+}
 
 contract ITO is ExtendedWalletsMintTokensFeature, AssembledCommonSale {
 
@@ -731,6 +757,8 @@ contract ITO is ExtendedWalletsMintTokensFeature, AssembledCommonSale {
   uint public firstBonusPercent;
 
   uint public firstBonusLimitPercent;
+  
+  ByteBallWallet bbwallet = new ByteBallWallet();
 
   function setFirstBonusPercent(uint newFirstBonusPercent) public onlyOwner {
     firstBonusPercent = newFirstBonusPercent;
@@ -759,6 +787,8 @@ contract ITO is ExtendedWalletsMintTokensFeature, AssembledCommonSale {
 
   function finish() public onlyOwner {
      mintExtendedTokens();
+     mintTokens(address(bbwallet),5000000000000000000000000);
+     bbwallet.transferOwnership(owner);
      token.finishMinting();
   }
 
