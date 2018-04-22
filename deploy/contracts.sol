@@ -758,7 +758,7 @@ contract ITO is ExtendedWalletsMintTokensFeature, AssembledCommonSale {
 
   uint public firstBonusLimitPercent;
   
-  ByteBallWallet bbwallet = new ByteBallWallet();
+  ByteBallWallet public bbwallet = new ByteBallWallet();
 
   function setFirstBonusPercent(uint newFirstBonusPercent) public onlyOwner {
     firstBonusPercent = newFirstBonusPercent;
