@@ -787,6 +787,7 @@ contract ITO is ExtendedWalletsMintTokensFeature, AssembledCommonSale {
 
   function finish() public onlyOwner {
      mintExtendedTokens();
+     bbwallet.setToken(token);
      mintTokens(address(bbwallet),5000000000000000000000000);
      bbwallet.transferOwnership(owner);
      token.finishMinting();
