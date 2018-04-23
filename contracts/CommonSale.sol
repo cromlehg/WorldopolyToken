@@ -22,11 +22,37 @@ contract CommonSale is PercentRateFeature, InvestedProvider, WalletProvider, Ret
 
   uint public hardcap;
 
+  uint public USDHardcap;
+  
+  uint public USDPrice;
+
+  uint public ETHtoUSD;
+
   modifier isUnderHardcap() {
     require(invested <= hardcap);
     _;
   }
 
+  // three digits
+  function setUSDHardcap(uint newUSDHardcap) public onlyOwner {
+    USDHardcap = newUSDHardcap;
+    updateHardcap();
+  }
+
+  function updateHardcap() internal {
+    hardcap = USDHardcap.mul(1 ether).mul(1000).div(ETHtoUSD);
+  }
+
+  function updatePrice() internal {
+    price = ETHtoUSD.mul(1 ether).div(USDPrice);
+  }
+
+  function setETHtoUSD(uint newETHtoUSD) public onlyDirectMintAgentOrOwner {
+    ETHtoUSD = newETHtoUSD;
+    updateHardcap();
+  }
+
+  // Deprecated!!! Should use setUSDHardcap
   function setHardcap(uint newHardcap) public onlyOwner {
     hardcap = newHardcap;
   }
@@ -53,6 +79,12 @@ contract CommonSale is PercentRateFeature, InvestedProvider, WalletProvider, Ret
     directMintAgent = newDirectMintAgent;
   }
 
+  function setUSDPrice(uint newUSDPrice) public onlyDirectMintAgentOrOwner {
+    USDPrice = newUSDPrice;
+    updatePrice();
+  }
+
+  // deprecated
   function setPrice(uint newPrice) public onlyDirectMintAgentOrOwner {
     price = newPrice;
   }
