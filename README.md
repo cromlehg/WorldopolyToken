@@ -63,9 +63,9 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 * _Contracts manager_           : 0xB8A4799a4E2f10e4b30b6C6E9F762833C13eCDF4
 
 ### Links
-1. _Token_ -
-2. _PreITO_ -
-3. _ITO_ -
+1. _Token_ - https://etherscan.io/token/0x921a5dce3dfed5cccfbb2e593f2978533bc66110
+2. _PreITO_ - https://etherscan.io/address/0xea9cbced36a092c596e9c18313536d0eefacff46
+3. _ITO_ - https://etherscan.io/address/0x6dc2a5f11f602b673b0632a09d9a0456f95d241b
 
 ### Features
 * Manually mint tokens by owner or sale agent at any time until token minting finished. 
