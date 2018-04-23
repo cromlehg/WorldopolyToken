@@ -11,11 +11,14 @@ contract Token {
 contract PreITO {
   function setStart(uint newStart) public;
   function addMilestone(uint period, uint bonus) public;
-  function setPrice(uint newPrice) public;
+
+  function setUSDPrice(uint newUSDPrice) public;
+  function setUSDHardcap(uint newUSDHardcap) public;
+  function setETHtoUSD(uint newETHtoUSD) public;
+
   function setPercentRate(uint newPercentRate) public;
   function addValueBonus(uint from, uint bonus) public;
   function setMinInvestedLimit(uint newMinInvestedLimit) public;
-  function setHardcap(uint newHardcap) public;
   function setWallet(address newWallet) public;
   function setNextSaleAgent(address newICO) public;
   function setToken(address newToken) public;
@@ -25,13 +28,16 @@ contract PreITO {
 contract ITO {
   function setStart(uint newStart) public;
   function setPeriod(uint newPeriod) public;
-  function setPrice(uint newPrice) public;
+
+  function setUSDPrice(uint newUSDPrice) public;
+  function setUSDHardcap(uint newUSDHardcap) public;
+  function setETHtoUSD(uint newETHtoUSD) public;
+  
   function setPercentRate(uint newPercentRate) public;
   function addValueBonus(uint from, uint bonus) public;
   function setFirstBonusPercent(uint newFirstBonusPercent) public;
   function setFirstBonusLimitPercent(uint newFirstBonusLimitPercent) public;
   function setMinInvestedLimit(uint newMinInvestedLimit) public;
-  function setHardcap(uint newHardcap) public;
   function setWallet(address newWallet) public;
   function addWallet(address wallet, uint percent) public;
   function setToken(address newToken) public;
@@ -61,9 +67,12 @@ contract TestConfigurator is Ownable {
     preITO.addMilestone(10, 200);
     preITO.addMilestone(10, 150);
     preITO.addMilestone(10, 100);
-    preITO.setPrice(3184000000000000000000);
+
+    preITO.setUSDPrice(120);
+    preITO.setUSDHardcap(2400000000);
+    preITO.setETHtoUSD(644811);
+
     preITO.setMinInvestedLimit(20000000000000000);
-    preITO.setHardcap(6282000000000000000000);
     preITO.setToken(token);
     preITO.setPercentRate(1000);
     preITO.addValueBonus(3000000000000000000, 10);
@@ -84,16 +93,19 @@ contract TestConfigurator is Ownable {
     preITO.addValueBonus(900000000000000000000, 150);
 
     token.setSaleAgent(preITO);
-    token.setVestingPercent(0);
+    token.setVestingPercent(10);
     preITO.setNextSaleAgent(ito);
 
     ito.setStart(1523577600);
     ito.setPeriod(44);
-    ito.setPrice(3184000000000000000000);
+    
+    ito.setUSDPrice(120);
+    ito.setUSDHardcap(14400000000);
+    ito.setETHtoUSD(644811);
+
     ito.setFirstBonusPercent(50);
     ito.setFirstBonusLimitPercent(200);
     ito.setMinInvestedLimit(20000000000000000);
-    ito.setHardcap(37697000000000000000000);
     ito.setWallet(0x8fD94be56237EA9D854B23B78615775121Dd1E82);
     ito.addWallet(0xaa8ed6878a202eF6aFC518a64D2ccB8D73f1f2Ca, 150);
     ito.addWallet(0x24a7774d0eba02846580A214eeca955214cA776C, 50);
