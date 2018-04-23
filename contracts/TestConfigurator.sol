@@ -97,7 +97,7 @@ contract TestConfigurator is Ownable {
     ito.setWallet(0x8fD94be56237EA9D854B23B78615775121Dd1E82);
     ito.addWallet(0xaa8ed6878a202eF6aFC518a64D2ccB8D73f1f2Ca, 150);
     ito.addWallet(0x24a7774d0eba02846580A214eeca955214cA776C, 50);
-    ito.addWallet(0xaa8ed6878a202eF6aFC518a64D2ccB8D73f1f2Ca, 50);
+    ito.addWallet(0x470a2D1105EaE6aAe879623357F615Ab9cbf906E, 50);
     ito.setToken(token);
     ito.setPercentRate(1000);
     ito.addValueBonus(3000000000000000000, 10);
