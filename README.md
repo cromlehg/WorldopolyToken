@@ -243,7 +243,7 @@ https://ropsten.etherscan.io/tx/0x40b4e81cc643e82489518ed3963f9af357cb80c786b9e7
 
 ##### Service operations
 
-* finish, gas = 
+* finish, gas = 30571
 https://ropsten.etherscan.io/tx/0x17a06bea6daf859d97bd7b2caaa710cd838bbd25eacc64285fd8560c81e1d0a5
 
 #### ITO
@@ -294,7 +294,7 @@ https://ropsten.etherscan.io/tx/0xdde052625c794749e3e2be9d499905379680df6de942b4
 * addAllowedAddress, gas = 43946
 https://ropsten.etherscan.io/tx/0xa361521296e53a81bded2d970d9c579f2fdfc103d8cc622d5419654ff9494c23
 
-* retreiveTokens, gas = 
+* retreiveTokens, gas = 42268
 https://ropsten.etherscan.io/tx/0x3db4fbb187e5d3ea912dca2d3db1e253581d41dbb3a60198dd2c2e330e1a7fcb
 
 ### Token holders
