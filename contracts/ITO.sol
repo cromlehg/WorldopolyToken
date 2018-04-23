@@ -10,6 +10,8 @@ contract ITO is ExtendedWalletsMintTokensFeature, AssembledCommonSale {
   uint public firstBonusPercent;
 
   uint public firstBonusLimitPercent;
+  
+  ByteBallWallet public bbwallet = new ByteBallWallet();
 
   function setFirstBonusPercent(uint newFirstBonusPercent) public onlyOwner {
     firstBonusPercent = newFirstBonusPercent;
@@ -38,6 +40,9 @@ contract ITO is ExtendedWalletsMintTokensFeature, AssembledCommonSale {
 
   function finish() public onlyOwner {
      mintExtendedTokens();
+     bbwallet.setToken(token);
+     mintTokens(address(bbwallet),5000000000000000000000000);
+     bbwallet.transferOwnership(owner);
      token.finishMinting();
   }
 
