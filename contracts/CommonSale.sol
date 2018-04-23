@@ -53,7 +53,7 @@ contract CommonSale is PercentRateFeature, InvestedProvider, WalletProvider, Ret
     directMintAgent = newDirectMintAgent;
   }
 
-  function setPrice(uint newPrice) public onlyOwner {
+  function setPrice(uint newPrice) public onlyDirectMintAgentOrOwner {
     price = newPrice;
   }
 
