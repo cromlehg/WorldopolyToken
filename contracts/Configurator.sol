@@ -32,6 +32,7 @@ contract Configurator is Ownable {
     preITO.addMilestone(10, 150);
     preITO.addMilestone(10, 100);
     preITO.setUSDHardcap(2400000000);
+    preITO.setETHtoUSD(644811);
 
     token.setSaleAgent(preITO);
     token.setVestingPercent(100);
@@ -41,7 +42,8 @@ contract Configurator is Ownable {
     ito.setPeriod(44);
     ito.setFirstBonusPercent(50);
     ito.setFirstBonusLimitPercent(200);
-    preITO.setUSDHardcap(14400000000);
+    ito.setUSDHardcap(14400000000);
+    ito.setETHtoUSD(644811);
 
     ito.addWallet(0xd4Dde5011e330f8bFB246ce60d163AA5900ba71E, 150);
     ito.addWallet(0x752A9D3d59b8DFbd0798C70c59CAf4A95b5D896e, 50);
@@ -57,7 +59,6 @@ contract Configurator is Ownable {
   function commonConfigure(AssembledCommonSale sale) internal {
     sale.setPercentRate(1000);
     sale.setMinInvestedLimit(20000000000000000);
-    sale.setUSDPrice(644811);
     sale.setUSDPrice(120);
     sale.addValueBonus(3000000000000000000, 10);
     sale.addValueBonus(6000000000000000000, 15);

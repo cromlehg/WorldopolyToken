@@ -36,7 +36,6 @@ contract CommonSale is PercentRateFeature, InvestedProvider, WalletProvider, Ret
   // three digits
   function setUSDHardcap(uint newUSDHardcap) public onlyOwner {
     USDHardcap = newUSDHardcap;
-    updateHardcap();
   }
 
   function updateHardcap() internal {
@@ -50,6 +49,7 @@ contract CommonSale is PercentRateFeature, InvestedProvider, WalletProvider, Ret
   function setETHtoUSD(uint newETHtoUSD) public onlyDirectMintAgentOrOwner {
     ETHtoUSD = newETHtoUSD;
     updateHardcap();
+    updatePrice();
   }
 
   // Deprecated!!! Should use setUSDHardcap
@@ -81,7 +81,6 @@ contract CommonSale is PercentRateFeature, InvestedProvider, WalletProvider, Ret
 
   function setUSDPrice(uint newUSDPrice) public onlyDirectMintAgentOrOwner {
     USDPrice = newUSDPrice;
-    updatePrice();
   }
 
   // deprecated
