@@ -2,6 +2,7 @@ pragma solidity ^0.4.18;
 
 import './AssembledCommonSale.sol';
 import './ExtendedWalletsMintTokensFeature.sol';
+import './ByteBallWallet.sol';
 
 contract ITO is ExtendedWalletsMintTokensFeature, AssembledCommonSale {
 
