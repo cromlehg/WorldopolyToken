@@ -40,7 +40,7 @@ contract CommonSale is PercentRateFeature, InvestedProvider, WalletProvider, Ret
   }
 
   function updateHardcap() internal {
-    hardcap = USDHardcap.mul(1 ether).mul(1000).div(ETHtoUSD);
+    hardcap = USDHardcap.mul(1 ether).div(ETHtoUSD);
   }
 
   function updatePrice() internal {
