@@ -75,7 +75,7 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 ### Crowdsale stages
 
 #### PreITO
-* _Minimal insvested limit_     : 0.1 ETH
+* _Minimal insvested limit_     : 0.02 ETH
 * _Base price_                  : 1 ETH = 3184 Tokens
 * _Hardcap_                     : 6282 ETH
 * _Start_                       : 23 Apr 2018 00:00:00 GMT
@@ -87,7 +87,7 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 3. 10 days, bonus +10%
 
 #### ITO
-* _Minimal insvested limit_     : 0.1 ETH
+* _Minimal insvested limit_     : 0.02 ETH
 * _Base price_                  : 1 ETH = 3184 Tokens
 * _Hardcap_                     : 37 697 ETH
 * _Start_                       : 25 May 2018 00:00:00 GMT
