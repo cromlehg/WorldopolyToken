@@ -62,7 +62,7 @@ contract TestConfigurator is Ownable {
     preITO.addMilestone(10, 150);
     preITO.addMilestone(10, 100);
     preITO.setPrice(3184000000000000000000);
-    preITO.setMinInvestedLimit(100000000000000000);
+    preITO.setMinInvestedLimit(20000000000000000);
     preITO.setHardcap(6282000000000000000000);
     preITO.setToken(token);
     preITO.setPercentRate(1000);
@@ -92,7 +92,7 @@ contract TestConfigurator is Ownable {
     ito.setPrice(3184000000000000000000);
     ito.setFirstBonusPercent(50);
     ito.setFirstBonusLimitPercent(200);
-    ito.setMinInvestedLimit(100000000000000000);
+    ito.setMinInvestedLimit(20000000000000000);
     ito.setHardcap(37697000000000000000000);
     ito.setWallet(0x8fD94be56237EA9D854B23B78615775121Dd1E82);
     ito.addWallet(0xaa8ed6878a202eF6aFC518a64D2ccB8D73f1f2Ca, 150);

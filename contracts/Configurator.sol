@@ -56,7 +56,7 @@ contract Configurator is Ownable {
 
   function commonConfigure(AssembledCommonSale sale) internal {
     sale.setPercentRate(1000);
-    sale.setMinInvestedLimit(100000000000000000);
+    sale.setMinInvestedLimit(20000000000000000);
     sale.setPrice(3184000000000000000000);
     sale.addValueBonus(3000000000000000000, 10);
     sale.addValueBonus(6000000000000000000, 15);
