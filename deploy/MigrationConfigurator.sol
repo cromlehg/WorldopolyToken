@@ -909,13 +909,12 @@ contract Token is MintableToken {
 /**
  *  How to migrate:
  *  1. Deploy
- *  2. setToken
- *  3. call deploy
- *  4. toket.setSaleAgent(preITO)
+ *  2. call deploy
+ *  3. toket.setSaleAgent(preITO)
  */
 contract MigrationConfigurator is Ownable {
 
-  Token public token;
+  Token public token = Token(0x921a5DcE3dfED5CCCfbB2E593F2978533bc66110);
 
   PreITO public preITO;
 
