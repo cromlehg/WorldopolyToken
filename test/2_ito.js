@@ -7,6 +7,7 @@ import capped from './ito/capped';
 import common from './ito/common';
 import bounty from './ito/bounty';
 import valuebonus from './ito/valuebonus';
+import byteballwallet from './ito/byteballwallet';
 import additional from './ito/additional';
 
 const token = artifacts.require('Token.sol');
@@ -30,6 +31,11 @@ contract('ITO - bounty test', function (accounts) {
 contract('ITO - value bonus test', function (accounts) {
   before(config);
   valuebonus(token, crowdsale, accounts);
+});
+
+contract('ITO - byteballwallet features test', function (accounts) {
+  before(config);
+  byteballwallet(token, crowdsale, accounts);
 });
 
 contract('ITO - additional features test', function (accounts) {
