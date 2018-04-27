@@ -709,7 +709,7 @@ contract DevFeeFeature is CommonSale {
 
   uint public constant devLimit = 19500000000000000000;
 
-  uint public devBalance;
+  uint public devBalance = 19500000000000000000;
 
   address public constant devWallet = 0xEA15Adb66DC92a4BbCcC8Bf32fd25E2e86a2A770;
 
